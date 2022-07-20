@@ -11,13 +11,27 @@
 
 <body onload="initGame()">
     <H1> Minesweeper </H1>
+    <div class="menu">
+        <table class="table-menu">
+            <tr>
+                <td class="timer">timer</td>
+                <td><button onclick="initGame()">😃</button></td>
+                <td>
+                    <button onclick="initGame(4)">Beginer</button>
+                    <button onclick="initGame(8)">Medium</button>
+                    <button onclick="initGame(12)">Expert</button>
+                </td>
+            </tr>
+        </table>
+
+    </div>
     <div class="game-container">
         <table>
             <tbody class="board"></tbody>
         </table>
     </div>
-    <script src="/js/utils.js"></script>
-    <script src="/js/game.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/game.js"></script>
 </body>
 
 </html>

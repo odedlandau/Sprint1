@@ -14,4 +14,22 @@ table{
     border: 1px solid  black;
 }
 
+.menu{
+    margin: auto;
+    margin-bottom: 20px;
+    background-color: aqua;
+    width: 500px;
+    height: 50px;
+    padding-top: 15px;
+}
 
+.table-menu{
+    border: 2px solid black;
+}
+.table-menu td{
+    text-align: center;
+    width: 150px;
+    border: 2px solid black;
+    
+    
+}

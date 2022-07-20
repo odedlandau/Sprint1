@@ -41,7 +41,7 @@ function renderBoard(board) {
         strHTML += '<tr>'
         for (var j = 0; j < board.length; j++) {
             var cell = board[i][j]
-            strHTML += `<td onclick="cellClicked()">${cell}</td>`
+            strHTML += `<td class="cell" onclick="cellClicked(this, ${1}, ${j})">${cell}</td>`
             
 
         }
@@ -63,7 +63,13 @@ function createBoard(size) {
         board.push([])
 
         for (var j = 0; j < size; j++) {
-            board[i][j] = EMPTY
+            board[i][j] = {
+                minesAroundCount: 0,
+                isShown: true,
+                isMine: false,
+                isMarked: true
+            
+            }
         }
     }
 

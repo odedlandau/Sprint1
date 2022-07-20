@@ -10,8 +10,8 @@ var gLevel
 var gGame
 
 
-function initGame() {
-    gBoard = createBoard(4)
+function initGame(size) {
+    gBoard = createBoard(size)
     renderBoard(gBoard)
 }
 
