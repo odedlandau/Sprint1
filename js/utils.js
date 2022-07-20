@@ -53,10 +53,6 @@ function createBoard(level) {
         }
     }
 
-    board[2][2].isMine = true
-    board[0][3].isMine = true
-
-
     return board
 }
 
@@ -75,14 +71,13 @@ function renderBoard(board) {
             //     cell = ''
             // }
             var className = ''
-            var classId = getClassName({i, j})
-            className = (currCell.isShown) ? 'shown' : 'not-shown'        
+            var classId = getClassName({ i, j })
+            className = (currCell.isShown) ? 'shown' : 'not-shown'
 
             strHTML += `<td class="cell ${className} ${classId}" onclick="cellClicked(this, ${i}, ${j})">${cell}</td>`
 
-            console.log(strHTML);
-
         }
+
         strHTML += '</tr>'
 
         var elBoard = document.querySelector('.board')
@@ -130,11 +125,11 @@ function countNeighbors(cellI, cellJ, mat) {
 }
 
 // returning a fixed number from array
-function drawNum(gNums) {
-    var randIdx = getRandomInt(0, gNums.length)
-    var num = gNums[randIdx]
-    gNums.splice(randIdx, 1)
-    return num
+function drawCell(cells) {
+    var randIdx = getRandomInt(0, cells.length)
+    var cell = cells[randIdx]
+    cells.splice(randIdx, 1)
+    return cell
 }
 
 // Move the player by keyboard arrows
@@ -159,19 +154,20 @@ function renderCellByLocation(location, value) {
     elCell.innerHTML = value;
 }
 
-function getRandomEmptyCell(board) {
+function getEmptyCells(board) {
     var cells = []
     for (var i = 0; i < board.length; i++) {
-        for (var j = 0; j < board[0].length; j++) {
-            var cell = board[i][j]
-            if (cell.type === 'FLOOR' && cell.gameElement === null) {
-                var coord = { i, j }
-                cells.push(coord)
-            }
+        for (var j = 0; j < board.length; j++) {
+            // var cell = board[i][j]
+
+            var coord = { i, j }
+            cells.push(coord)
+
         }
     }
-    var randomCell = drawNum(cells)
-    return randomCell
+    // var randomCell = drawNum(cells)
+    // return randomCell
+    return cells
 }
 
 function createCell(rowIdx, colIdx, inCell = '') {
@@ -183,4 +179,6 @@ function createCell(rowIdx, colIdx, inCell = '') {
 
 
 }
+
+
 
