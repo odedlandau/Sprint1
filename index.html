@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 
-<body onload="initGame()">
+<body>
     <H1> Minesweeper </H1>
     <div class="menu">
         <table class="table-menu">
@@ -17,9 +17,9 @@
                 <td class="timer">timer</td>
                 <td><button onclick="initGame()">😃</button></td>
                 <td>
-                    <button onclick="initGame(4)">Beginer</button>
-                    <button onclick="initGame(8)">Medium</button>
-                    <button onclick="initGame(12)">Expert</button>
+                    <button onclick="initGame(this)">Beginer</button>
+                    <button onclick="initGame(this)">Medium</button>
+                    <button onclick="initGame(this)">Expert</button>
                 </td>
             </tr>
         </table>

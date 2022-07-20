@@ -35,14 +35,52 @@ function getTime() {
 }
 
 
+// creates a board and returns it
+function createBoard(level) {
+    const board = []
+
+    for (var i = 0; i < level.size; i++) {
+        board.push([])
+
+        for (var j = 0; j < level.size; j++) {
+            board[i][j] = {
+                minesAroundCount: 0,
+                isShown: false,
+                isMine: false,
+                isMarked: false
+
+            }
+        }
+    }
+
+    board[2][2].isMine = true
+    board[0][3].isMine = true
+
+
+    return board
+}
+
 function renderBoard(board) {
     var strHTML = ''
     for (var i = 0; i < board.length; i++) {
         strHTML += '<tr>'
         for (var j = 0; j < board.length; j++) {
-            var cell = board[i][j]
-            strHTML += `<td class="cell" onclick="cellClicked(this, ${1}, ${j})">${cell}</td>`
-            
+            var currCell = board[i][j]
+            var cell = ''
+            // if (currCell.isMine) {
+            //     cell = MINE
+            // } else if (currCell.minesAroundCount !== 0)  {
+            //     cell = currCell.minesAroundCount
+            // } else {
+            //     cell = ''
+            // }
+            var className = ''
+            var classId = getClassName({i, j})
+            className = (currCell.isShown) ? 'shown' : 'not-shown'        
+
+            strHTML += `<td class="cell ${className} ${classId}" onclick="cellClicked(this, ${i}, ${j})">${cell}</td>`
+
+            console.log(strHTML);
 
         }
         strHTML += '</tr>'
@@ -54,29 +92,6 @@ function renderBoard(board) {
 }
 
 
-// creates a board and returns it
-function createBoard(size) {
-    const board = []
-
-
-    for (var i = 0; i < size; i++) {
-        board.push([])
-
-        for (var j = 0; j < size; j++) {
-            board[i][j] = {
-                minesAroundCount: 0,
-                isShown: true,
-                isMine: false,
-                isMarked: true
-            
-            }
-        }
-    }
-
-    board[0][3] = MINE
-    board[2][2] = MINE
-    return board
-}
 
 
 
@@ -108,7 +123,7 @@ function countNeighbors(cellI, cellJ, mat) {
         for (var j = cellJ - 1; j <= cellJ + 1; j++) {
             if (i === cellI && j === cellJ) continue;
             if (j < 0 || j >= mat[i].length) continue;
-            if (mat[i][j] === LIFE) neighborsCount++;
+            if (mat[i][j].isMine) neighborsCount++;
         }
     }
     return neighborsCount;

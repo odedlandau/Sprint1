@@ -33,3 +33,11 @@ table{
     
     
 }
+
+.not-shown {
+    background-color: rgb(168, 159, 159);
+}
+
+.shown {
+    background-color: rgb(246, 95, 95);
+}
