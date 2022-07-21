@@ -9,22 +9,24 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 
-<body>
+<body onload="initGame()">
     <H1> Minesweeper </H1>
-    <div class="menu">
-        <table class="table-menu">
-            <tr>
-                <td class="timer">timer</td>
-                <td><button onclick="initGame()">😃</button></td>
-                <td>
-                    <button onclick="initGame(this)">Beginer</button>
-                    <button onclick="initGame(this)">Medium</button>
-                    <button onclick="initGame(this)">Expert</button>
-                </td>
-            </tr>
-        </table>
 
-    </div>
+    <table class="table-menu">
+        <tr>
+            <td class="timer">timer</td>
+            <td><button onclick="initGame()">😃</button></td>
+        <tr>
+            <td><button onclick="updateLevel(this)">Beginer</button></td>
+            <td><button onclick="updateLevel(this)">Medium</button></td>
+            <td><button onclick="updateLevel(this)">Expert</button></td>
+        </tr>
+        </tr>
+    </table>
+
+    <h1 class="msg"></h1>
+
+
     <div class="game-container">
         <table>
             <tbody class="board"></tbody>

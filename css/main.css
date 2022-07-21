@@ -1,9 +1,15 @@
 body {
     text-align: center;
+    /* background-color: rgba(71, 220, 101, 0.989); */
+    background-image: url("../img/386851.jpg");
+    background-size:cover;
+    background-repeat: no-repeat;
+    
 }
 
-table{
+table {
     margin: auto;
+    border-radius: 10px;
 }
 
 .board td {
@@ -11,10 +17,10 @@ table{
     height: 30px;
     text-align: center;
     transition: 0.5s;
-    border: 1px solid  black;
+    border: 1px solid black;
 }
 
-.menu{
+.menu {
     margin: auto;
     margin-bottom: 20px;
     background-color: aqua;
@@ -23,21 +29,30 @@ table{
     padding-top: 15px;
 }
 
-.table-menu{
-    border: 2px solid black;
+.table-menu {
+    background-color: rgba(137, 141, 138, 0.831)
+    
+    
 }
-.table-menu td{
+
+.table-menu td {
     text-align: center;
     width: 150px;
-    border: 2px solid black;
-    
-    
+
+
+
 }
 
 .not-shown {
-    background-color: rgb(168, 159, 159);
+    background-color: rgb(246, 95, 95);
 }
 
 .shown {
-    background-color: rgb(246, 95, 95);
+
+    background-color: rgb(255, 255, 255);
+}
+
+.msg {
+    color: rgb(254, 117, 5);
+    
 }

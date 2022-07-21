@@ -35,61 +35,6 @@ function getTime() {
 }
 
 
-// creates a board and returns it
-function createBoard(level) {
-    const board = []
-
-    for (var i = 0; i < level.size; i++) {
-        board.push([])
-
-        for (var j = 0; j < level.size; j++) {
-            board[i][j] = {
-                minesAroundCount: 0,
-                isShown: false,
-                isMine: false,
-                isMarked: false
-
-            }
-        }
-    }
-
-    return board
-}
-
-function renderBoard(board) {
-    var strHTML = ''
-    for (var i = 0; i < board.length; i++) {
-        strHTML += '<tr>'
-        for (var j = 0; j < board.length; j++) {
-            var currCell = board[i][j]
-            var cell = ''
-            // if (currCell.isMine) {
-            //     cell = MINE
-            // } else if (currCell.minesAroundCount !== 0)  {
-            //     cell = currCell.minesAroundCount
-            // } else {
-            //     cell = ''
-            // }
-            var className = ''
-            var classId = getClassName({ i, j })
-            className = (currCell.isShown) ? 'shown' : 'not-shown'
-
-            strHTML += `<td class="cell ${className} ${classId}" onclick="cellClicked(this, ${i}, ${j})">${cell}</td>`
-
-        }
-
-        strHTML += '</tr>'
-
-        var elBoard = document.querySelector('.board')
-        elBoard.innerHTML = strHTML
-
-    }
-}
-
-
-
-
-
 // creates a mat copy
 function copyMat(mat) {
     var newMat = [];
