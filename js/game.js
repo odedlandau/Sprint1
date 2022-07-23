@@ -9,25 +9,36 @@ var gBoard
 var gLevel = { size: 4, mines: 2 }
 var gGame
 var gCells
+var gIsFirstClick
+var gTimeStart
+var gTimeIntervalId
+var gLivesCount = 3
+
+
+
+var gElTimer = document.querySelector('.time')
 
 
 
 
 function initGame() {
+
     gGame = gGame = {
         isOn: true,
         shownCount: 0,
         markedCount: 0,
-        secsPassed: 0        
+        secsPassed: 0
     }
-
     gBoard = createBoard(gLevel)
     randomizeMines(gLevel.mines)
     setMinesNegsCount(gBoard)
     renderBoard(gBoard)
 
+    gElTimer.innerText = ''
+    gIsFirstClick = false
+    var elMsg = document.querySelector('.msg')
+    elMsg.innerText = ''
 }
-
 
 // creates a board and returns it
 function createBoard(level) {
@@ -96,15 +107,48 @@ function setMinesNegsCount(board) {
 function cellClicked(elCell, i, j) {
     var cell = gBoard[i][j]
 
-    if (cell.isShown) return
-    if (elCell.innerText === FLAG) return
+    if (!gIsFirstClick) {
 
+        setTimer()
+        // gBoard[i][j].isMine = false
+        // elCell.innerText = ''
+        // cell.isShown = true
+        // elCell.classList.remove('not-shown')
+        // elCell.classList.add('shown')
+        gGame.shownCount++
+        
+
+
+        gIsFirstClick = !gIsFirstClick
+    }
+
+    if (cell.isShown) return
+    if (cell.isMarked) return
+    // if (cell.isMine) {
+    // var elBtn = document.querySelector('btn-restart')
+    // elBtn.innerText = '😣'
+    // var elMsg = document.querySelector('.msg')
+    // elMsg.innerText = 'LOOSER'
+
+
+
+    // }
+
+
+    /// step on mine
     if (!cell.isShown && cell.isMine) {
         elCell.innerText = MINE
         cell.isShown = true
         elCell.classList.remove('not-shown')
         elCell.classList.add('shown')
-        // TODO: gmae over
+        gLivesCount--
+        checkLives()
+
+        // var elBtn = document.querySelector('.btn-restart')
+        // elBtn.innerText = '😣'
+        // console.log(elBtn);
+
+
     } else if (!cell.isShown && cell.minesAroundCount !== 0) {
         elCell.innerText = cell.minesAroundCount
         cell.isShown = true
@@ -122,6 +166,9 @@ function cellClicked(elCell, i, j) {
         gGame.shownCount++
 
     }
+
+    checkGameWin()
+
 
 }
 
@@ -145,7 +192,7 @@ function cellMarked(elCell, i, j, ev) {
     }
 
 
-    checkGameWin(gBoard)
+    checkGameWin()
 }
 
 
@@ -158,13 +205,18 @@ function removeMarked(elCell, i, j) {
 
 }
 
-function checkGameWin(board) {
+function checkGameWin() {
 
 
-    if (gGame.markedCount + gGame.shownCount === gLevel.size**2)
+    if (gGame.markedCount + gGame.shownCount === gLevel.size ** 2) {
 
-    var elMsg = document.querySelector('.msg')
-    elMsg.innerText = 'CONGRATS...YOU WIN!!!'
+        clearInterval(gTimeIntervalId)
+        var elMsg = document.querySelector('.msg')
+        elMsg.innerText = 'CONGRATS...YOU WIN!!!'
+        var elBtn = document.querySelector('.btn-restart')
+        elBtn.innerText = '😍'
+
+    }
 
 
 }
@@ -211,3 +263,37 @@ document, addEventListener('contextmenu', (event) => {
 
 
 })
+
+function setTimer() {
+    gTimeStart = Date.now()
+    gTimeIntervalId = setInterval(() => {
+        gGame.secsPassed = (Date.now() - gTimeStart) / 1000
+        gElTimer.innerText = `${(gGame.secsPassed).toFixed(0)} `
+    }, 100);
+}
+
+function checkLives() {
+    var elLives = document.querySelector('.lives')
+
+    if (gLivesCount > 0) {
+
+
+        switch (gLivesCount) {
+            case 3:
+                elLives.innerText = '💗 💗 💗'
+                break
+            case 2:
+                elLives.innerText = '💗 💗'
+                break
+            case 1:
+                elLives.innerText = '💗'
+                break
+        }
+    } else {
+
+
+        var elMsg = document.querySelector('.msg')
+        elMsg.innerText = 'LOOSER'
+        clearInterval(gTimeIntervalId)
+    }
+}

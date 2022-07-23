@@ -2,9 +2,9 @@ body {
     text-align: center;
     /* background-color: rgba(71, 220, 101, 0.989); */
     background-image: url("../img/386851.jpg");
-    background-size:cover;
+    background-size: cover;
     background-repeat: no-repeat;
-    
+
 }
 
 table {
@@ -30,17 +30,26 @@ table {
 }
 
 .table-menu {
-    background-color: rgba(137, 141, 138, 0.831)
-    
-    
+    background-color: rgba(137, 141, 138, 0.831);
+    margin-bottom: 20px;
+    padding: 20px;
+
+
 }
 
+
 .table-menu td {
+    /* border: 2px solid black; */
     text-align: center;
     width: 150px;
+}
 
-
-
+.timer {
+    background-color: #4073d3bd;
+    color: #FFFFFF;;
+    border-radius: 8px;
+    font-weight: 800;
+    border: 2px solid black;
 }
 
 .not-shown {
@@ -54,5 +63,22 @@ table {
 
 .msg {
     color: rgb(254, 117, 5);
-    
+
+}
+
+button {
+
+    background: #4073d3bd;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: nunito, roboto, proxima-nova, "proxima nova", sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    padding: 12px 14px;
+    text-align: center;
+
 }

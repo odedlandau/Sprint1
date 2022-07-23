@@ -14,8 +14,9 @@
 
     <table class="table-menu">
         <tr>
-            <td class="timer">timer</td>
-            <td><button onclick="initGame()">😃</button></td>
+            <td class="timer">Your time is: <span class="time"></span></td>
+            <td><button class="btn-restart" onclick="initGame()">😃</button></td>
+            <td class="lives">💗 💗 💗</td>
         <tr>
             <td><button onclick="updateLevel(this)">Beginer</button></td>
             <td><button onclick="updateLevel(this)">Medium</button></td>
@@ -23,15 +24,12 @@
         </tr>
         </tr>
     </table>
-
-    <h1 class="msg"></h1>
-
-
     <div class="game-container">
         <table>
             <tbody class="board"></tbody>
         </table>
     </div>
+    <h1 class="msg"></h1>
     <script src="js/utils.js"></script>
     <script src="js/game.js"></script>
 </body>
